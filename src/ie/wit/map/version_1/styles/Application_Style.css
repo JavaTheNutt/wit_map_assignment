@@ -1,0 +1,5 @@
+#mainMap {
+    -fx-background-image: url("../img/witmap2.jpeg");
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+}
