@@ -8,34 +8,39 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class Building extends Place
 {
-	private IntegerProperty numRooms;
+	private final IntegerProperty numRooms;
+	private boolean initialised;
 
 	public Building(int id, String name, int numRooms, String type)
 	{
 		super(id, name, type, 0);
 		this.numRooms = new SimpleIntegerProperty(numRooms);
+		initialised = true;
 	}
 
 	public Building(String name, int numRooms, String type)
 	{
 		super(name, type, 0);
 		this.numRooms = new SimpleIntegerProperty(numRooms);
+		initialised = true;
 	}
 
 	@Override
 	public String toString()
 	{
-		return super.toString() + "\nRooms:\t" + numRooms + "\n";
+		if (initialised) {
+			return super.toString() + "\nRooms:\t" + numRooms + "\n";
+		}
+		return null;
 	}
 
 	public int getNumRooms()
 	{
-		return numRooms.get();
+		if (initialised) {
+			return numRooms.get();
+		}
+		return 0;
 	}
 
-	public void setNumRooms(int numRooms)
-	{
-		this.numRooms = new SimpleIntegerProperty(numRooms);
-	}
 
 }

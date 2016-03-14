@@ -5,15 +5,18 @@ package ie.wit.map.version_1.model;
  */
 public class Area extends Place
 {
+	private boolean initialised;
 
 	public Area(int id, String name, String type)
 	{
 		super(id, name, type, 1);
+		initialised = true;
 	}
 
 	public Area(String name, String type)
 	{
 		super(name, type, 1);
+		initialised = true;
 	}
 
 }

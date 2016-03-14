@@ -15,12 +15,13 @@ public abstract class Place implements Comparable<Place>
 {
 	private static final String[] areaTypes = {"Car Park", "Sports Field", "Bike Shed"};
 	private static final String[] buildingTypes = {"Recreational", "Educational", "Residential", "Other"};
-	protected IntegerProperty id;
-	protected StringProperty name;
-	protected StringProperty type;
+	protected final IntegerProperty id;
+	protected final StringProperty name;
+	protected final StringProperty type;
 	/*this will ensure that the Place fits the ENUM constraints of the database. Probably not used
 	* as users will most likely select types from a dropdown menu*/
 	private boolean typeValid;
+	private boolean initialised = false;
 
 
 	public Place(String name, String type, int objectType)
@@ -33,6 +34,7 @@ public abstract class Place implements Comparable<Place>
 		} while (Main.dataCollection.idExists(tempId));
 		id = new SimpleIntegerProperty(tempId);
 		typeValid = checkTypeValidity(type, objectType);
+		initialised = true;
 	}
 
 	public Place(int id, String name, String type, int objectType)
@@ -41,72 +43,100 @@ public abstract class Place implements Comparable<Place>
 		this.name = new SimpleStringProperty(name);
 		this.type = new SimpleStringProperty(type);
 		typeValid = true; // defaults to true as any object with an id predefined has been read from a database
+		initialised = true;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "ID:\t" + id.get() + "\nName:\t" + name.get() + "\nType:\t" + type.get();
+		if (initialised){
+			return "ID:\t" + id.get() + "\nName:\t" + name.get() + "\nType:\t" + type.get();
+		}
+		return null;
 	}
 
 	public int getId()
 	{
-		return id.get();
+		if(initialised) {
+			return id.get();
+		}
+		return 0;
 	}
 
 
 	public String getName()
 	{
-		return name.get();
+		if(initialised) {
+			return name.get();
+		}
+		return null;
 	}
 
-	public void setName(String name)
-	{
-		this.name = new SimpleStringProperty(name);
-	}
 
 	private int generateUniqueId()
 	{
-		Random random = new Random();
-		return 100000 + random.nextInt(99999);
+		if (initialised) {
+			Random random = new Random();
+			return 100000 + random.nextInt(99999);
+		}
+		return 0;
 	}
 
 	@Override
-	public int compareTo(Place o)
+	public final int compareTo(Place o)
 	{
 		return this.getId() - o.getId();
 	}
 
 	private boolean checkTypeValidity(String s, int o)
 	{
-		if (o == 0) {
-			for (String buildingType : buildingTypes) {
-				if (buildingType.equalsIgnoreCase(s)) {
-					return true;
+		if (initialised) {
+			if (o == 0) {
+				for (String buildingType : buildingTypes) {
+					if (buildingType.equalsIgnoreCase(s)) {
+						return true;
+					}
 				}
-			}
-		} else {
-			for (String areaType : areaTypes) {
-				if (areaType.equalsIgnoreCase(s)) {
-					return true;
+			} else {
+				for (String areaType : areaTypes) {
+					if (areaType.equalsIgnoreCase(s)) {
+						return true;
+					}
 				}
 			}
 		}
 		return false;
 	}
 
-	public String getType()
+	public final String getType()
 	{
-		return type.get();
+		if (initialised) {
+			return type.get();
+		}
+		return null;
 	}
 
-	public StringProperty typeProperty()
+	public final StringProperty typeProperty()
 	{
-		return type;
+		if (initialised) {
+			return type;
+		}
+		return null;
 	}
 
-	public boolean isTypeValid()
+	public final boolean isTypeValid()
 	{
-		return typeValid;
+		return initialised && typeValid;
+
+	}
+
+	public static String[] getAreaTypes()
+	{
+		return areaTypes;
+	}
+
+	public static String[] getBuildingTypes()
+	{
+		return buildingTypes;
 	}
 }

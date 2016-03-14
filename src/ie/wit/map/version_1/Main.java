@@ -1,11 +1,14 @@
 package ie.wit.map.version_1;
 
+import ie.wit.map.version_1.managers.ViewLoader;
 import ie.wit.map.version_1.model.Area;
 import ie.wit.map.version_1.model.Building;
 import ie.wit.map.version_1.model.Place;
 import ie.wit.map.version_1.model.database.DataCollection;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ import java.util.List;
 public class Main extends Application
 {
 	public static final DataCollection dataCollection = new DataCollection();
+	public static final ViewLoader viewLoader = new ViewLoader();
 	private static Scene scene;
 
 	public static void main(String[] args)
@@ -55,10 +59,11 @@ public class Main extends Application
 		list.forEach(place -> dataCollection.addToList(place));
 	}
 
+	// TODO: 13/03/2016 finish add building form 
 	@Override
 	public void start(Stage window) throws Exception
 	{
-		/*BorderPane root = FXMLLoader.load(getClass().getResource("views/root/Root.fxml"));
+		BorderPane root = FXMLLoader.load(getClass().getResource("views/root/Root.fxml"));
 		window.setMaximized(true);
 		window.setResizable(false);
 		window.setX(0);
@@ -66,7 +71,7 @@ public class Main extends Application
 		window.setTitle("Towers of Hanoi Version 2");
 		scene = new Scene(root, Double.MAX_VALUE, Double.MAX_VALUE);
 		window.setScene(scene);
-		window.show();*/
-		dataCollection.getTotalList().forEach(e -> System.out.println(e.toString()));
+		window.show();
+
 	}
 }
