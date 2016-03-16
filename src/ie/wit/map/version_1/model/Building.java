@@ -29,7 +29,7 @@ public class Building extends Place
 	public String toString()
 	{
 		if (initialised) {
-			return super.toString() + "\nRooms:\t" + numRooms + "\n";
+			return super.toString() + "\nRooms:\t" + numRooms.get() + "\n";
 		}
 		return null;
 	}

@@ -2,6 +2,7 @@ package ie.wit.map.version_1.views.root;
 
 import ie.wit.map.version_1.Main;
 import ie.wit.map.version_1.managers.ViewLoader;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 
@@ -24,6 +25,10 @@ public class RootCtrl
 	}
 	@FXML
 	private void addBuildingRequested(){
-		viewLoader.displayAddBuilding();
+		viewLoader.displayPlaceManager();
+	}
+	@FXML
+	private void mapClicked(Event e){
+		System.out.println();
 	}
 }

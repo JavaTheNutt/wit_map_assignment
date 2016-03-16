@@ -32,9 +32,9 @@ public abstract class Place implements Comparable<Place>
 		do {
 			tempId = generateUniqueId();
 		} while (Main.dataCollection.idExists(tempId));
+		initialised = true;
 		id = new SimpleIntegerProperty(tempId);
 		typeValid = checkTypeValidity(type, objectType);
-		initialised = true;
 	}
 
 	public Place(int id, String name, String type, int objectType)
@@ -50,7 +50,7 @@ public abstract class Place implements Comparable<Place>
 	public String toString()
 	{
 		if (initialised){
-			return "ID:\t" + id.get() + "\nName:\t" + name.get() + "\nType:\t" + type.get();
+			return "ID:\t" + id.get() + "\nName:\t" + name.get() + "\nType:\t" + type.get() + "\nValid:\t" + isTypeValid();
 		}
 		return null;
 	}

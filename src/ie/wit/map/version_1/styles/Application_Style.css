@@ -7,7 +7,7 @@
 .formLabel{
     -fx-font-family: Tahoma;
     -fx-font-weight: bold;
-    -fx-font-size: 1.2em;
+    -fx-font-size: 1.3em;
 }
 /*todo finish styling invalid form entry*/
 .invalidEntry{

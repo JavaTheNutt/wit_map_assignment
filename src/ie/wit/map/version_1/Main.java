@@ -64,12 +64,12 @@ public class Main extends Application
 	public void start(Stage window) throws Exception
 	{
 		BorderPane root = FXMLLoader.load(getClass().getResource("views/root/Root.fxml"));
-		window.setMaximized(true);
+		/*window.setMaximized(true);*/
 		window.setResizable(false);
-		window.setX(0);
-		window.setY(0);
+		/*window.setX(0);
+		window.setY(0);*/
 		window.setTitle("Towers of Hanoi Version 2");
-		scene = new Scene(root, Double.MAX_VALUE, Double.MAX_VALUE);
+		scene = new Scene(root, 1000, 600);
 		window.setScene(scene);
 		window.show();
 
