@@ -15,6 +15,7 @@ import java.io.IOException;
  */
 public class ViewLoader
 {
+	// TODO: 16/03/2016 create loader for main view and call from Main 
 	public void displayAddBuilding(){
 		Stage window = new Stage();
 		window.setTitle("Add Building");

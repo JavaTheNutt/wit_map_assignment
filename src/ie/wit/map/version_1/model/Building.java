@@ -11,16 +11,16 @@ public class Building extends Place
 	private final IntegerProperty numRooms;
 	private boolean initialised;
 
-	public Building(int id, String name, int numRooms, String type)
+	public Building(int id, String name, int numRooms, String type, int guiArea)
 	{
-		super(id, name, type, 0);
+		super(id, name, type, 0, guiArea);
 		this.numRooms = new SimpleIntegerProperty(numRooms);
 		initialised = true;
 	}
 
-	public Building(String name, int numRooms, String type)
+	public Building(String name, int numRooms, String type,  int guiArea)
 	{
-		super(name, type, 0);
+		super(name, type, 0, guiArea);
 		this.numRooms = new SimpleIntegerProperty(numRooms);
 		initialised = true;
 	}

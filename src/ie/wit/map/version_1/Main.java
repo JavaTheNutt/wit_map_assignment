@@ -33,7 +33,7 @@ public class Main extends Application
 		return scene;
 	}
 
-	private static void populateDb()
+	/*private static void populateDb()
 	{
 		Building building01 = new Building("building01", 12, "Educational");
 		Building building02 = new Building("building02", 23, "Educational");
@@ -57,9 +57,10 @@ public class Main extends Application
 		list.add(area04);
 		list.add(area05);
 		list.forEach(place -> dataCollection.addToList(place));
-	}
+	}*/
 
 	// TODO: 13/03/2016 finish add building form 
+	// TODO: 16/03/2016 match areas on map to building/area object 
 	@Override
 	public void start(Stage window) throws Exception
 	{

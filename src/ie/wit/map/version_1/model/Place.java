@@ -18,30 +18,33 @@ public abstract class Place implements Comparable<Place>
 	protected final IntegerProperty id;
 	protected final StringProperty name;
 	protected final StringProperty type;
+	protected final IntegerProperty guiArea;
 	/*this will ensure that the Place fits the ENUM constraints of the database. Probably not used
 	* as users will most likely select types from a dropdown menu*/
 	private boolean typeValid;
 	private boolean initialised = false;
 
 
-	public Place(String name, String type, int objectType)
+	public Place(String name, String type, int objectType, int guiArea)
 	{
 		this.name = new SimpleStringProperty(name);
 		this.type = new SimpleStringProperty(type);
+		this.guiArea = new SimpleIntegerProperty(guiArea);
 		int tempId;
+		initialised = true;
 		do {
 			tempId = generateUniqueId();
 		} while (Main.dataCollection.idExists(tempId));
-		initialised = true;
 		id = new SimpleIntegerProperty(tempId);
 		typeValid = checkTypeValidity(type, objectType);
 	}
 
-	public Place(int id, String name, String type, int objectType)
+	public Place(int id, String name, String type, int objectType, int guiArea)
 	{
 		this.id = new SimpleIntegerProperty(id);
 		this.name = new SimpleStringProperty(name);
 		this.type = new SimpleStringProperty(type);
+		this.guiArea = new SimpleIntegerProperty(guiArea);
 		typeValid = true; // defaults to true as any object with an id predefined has been read from a database
 		initialised = true;
 	}
@@ -138,5 +141,15 @@ public abstract class Place implements Comparable<Place>
 	public static String[] getBuildingTypes()
 	{
 		return buildingTypes;
+	}
+
+	public int getGuiArea()
+	{
+		return guiArea.get();
+	}
+
+	public IntegerProperty guiAreaProperty()
+	{
+		return guiArea;
 	}
 }

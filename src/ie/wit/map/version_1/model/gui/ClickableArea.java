@@ -1,6 +1,11 @@
 package ie.wit.map.version_1.model.gui;
 
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.layout.Pane;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -8,15 +13,23 @@ import java.util.List;
  */
 public class ClickableArea
 {
-	private String areaId;
-	private final List<ClickableSquare> squares = new ArrayList<>();
+	private final String areaId;
+	private final List<Node> squares = new ArrayList<>();
 
-	public ClickableArea(){
-
+	public ClickableArea(String id){
+		this.areaId = id;
 	}
-	public void addSquare(ClickableSquare square){
-		squares.add(square);
+	public void addSquare(Group square){
+		squares.addAll(square.getChildren());
 	}
 
+	public List<Node> getSquares()
+	{
+		return squares;
+	}
 
+	public String getAreaId()
+	{
+		return areaId;
+	}
 }
