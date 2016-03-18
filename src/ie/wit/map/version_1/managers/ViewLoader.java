@@ -1,11 +1,10 @@
 package ie.wit.map.version_1.managers;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
+import ie.wit.map.version_1.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TabPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,34 +14,42 @@ import java.io.IOException;
  */
 public class ViewLoader
 {
-	// TODO: 16/03/2016 create loader for main view and call from Main 
-	public void displayAddBuilding(){
-		Stage window = new Stage();
-		window.setTitle("Add Building");
-		window.initModality(Modality.APPLICATION_MODAL);
-		VBox root;
-		try {
-			root = FXMLLoader.load(getClass().getResource("../views/add_building/AddBuilding.fxml"));
-			Scene scene = new Scene(root, 400, 200);
-			window.setScene(scene);
-			window.showAndWait();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	private final Stage window;
 
+	public ViewLoader(Stage window)
+	{
+		this.window = window;
 	}
-	public void displayPlaceManager(){
-		Stage window = new Stage();
+
+	public void displayPlaceManager()
+	{
 		window.setTitle("Place Manager");
-		window.initModality(Modality.APPLICATION_MODAL);
-		TabPane root;
+		VBox root;
 		try {
 			root = FXMLLoader.load(getClass().getResource("../views/place_manager/PlaceManager.fxml"));
 			Scene scene = new Scene(root, 900, 600);
 			window.setScene(scene);
-			window.showAndWait();
+			window.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void displayRoot(boolean selection)
+	{
+		BorderPane root = null;
+		Main.setRootInSelection(selection);
+		try {
+			root = FXMLLoader.load(getClass().getResource("../views/root/Root.fxml"));
+			window.setResizable(false);
+			window.setTitle("Towers of Hanoi Version 2");
+			Scene scene = new Scene(root, 1000, 600);
+			Main.setScene(scene);
+			window.setScene(scene);
+			window.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

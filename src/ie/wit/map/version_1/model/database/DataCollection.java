@@ -21,13 +21,11 @@ public class DataCollection
 
 	public DataCollection()
 	{
-		DatabaseConnection.connect();
-		if (DatabaseConnection.checkConnection()) {
-			idList = new ArrayList<>();
-			totalList = DatabaseConnection.getAllFromRecords();
-			if (totalList != null || totalList.size() > 0) {
-				totalList.forEach(e -> idList.add(e.getId()));
-			}
+		// TODO: 18/03/2016 refactor this because it is unnessecary to check the connection
+		idList = new ArrayList<>();
+		totalList = DatabaseConnection.getAllFromRecords();
+		if (totalList != null || totalList.size() > 0) {
+			totalList.forEach(e -> idList.add(e.getId()));
 		}
 	}
 

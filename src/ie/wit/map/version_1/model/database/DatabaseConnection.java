@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class DatabaseConnection
 {
+	// TODO: 18/03/2016 refactor so that there is each time the database is queried, a new connection is opened and closed
 	private static final String username = "root";
 	private static final String password = "root";
 	private static final String host = "localhost:3306";
@@ -22,27 +23,28 @@ public class DatabaseConnection
 	private static final String buildingCol01 = "buildingId";
 	private static final String buildingCol02 = "buildingName";
 	private static final String buildingCol03 = "numberRooms";
-	private static Statement statement;
 	private static Connection myConnection;
 
-	public static void connect()
+	private static Statement connect()
 	{
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			/*java.sql.Connection*/ myConnection = DriverManager.getConnection(dbURL);
-			statement = myConnection.createStatement();
+			myConnection = DriverManager.getConnection(dbURL);
+			return myConnection.createStatement();
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
 		}
+		return null;
 	}
 
 	public static boolean checkConnection()
 	{
-		return statement != null;
+		return connect() != null;
 	}
 
 	public static List<Place> getAllFromRecords()
 	{
+		Statement statement = connect();
 		List<Place> list = new ArrayList<>();
 		ResultSet res = null;
 		if (checkConnection()) {
@@ -53,8 +55,9 @@ public class DatabaseConnection
 					int id = res.getInt("buildingId");
 					String buildingName = res.getString("buildingName");
 					String buildingType = res.getString("buildingType");
+					String guiArea = res.getString("guiArea");
 					Building building;
-					building = new Building(id, buildingName, numRooms, buildingType);
+					building = new Building(id, buildingName, numRooms, buildingType, guiArea);
 					list.add(building);
 				}
 				res = statement.executeQuery("SELECT * FROM areas");
@@ -62,21 +65,26 @@ public class DatabaseConnection
 					int areaId = res.getInt("areaId");
 					String areaName = res.getString("areaName");
 					String areaType = res.getString("areaType");
-					Area area = new Area(areaId, areaName, areaType);
+					String guiArea = res.getString("guiArea");
+					Area area = new Area(areaId, areaName, areaType, guiArea);
 					list.add(area);
 				}
 				res.close();
+				closeConnection(statement);
 				return list;
 			} catch (SQLException e) {
 				e.printStackTrace();
+				closeConnection(statement);
 				return null;
 			}
 		}
+		closeConnection(statement);
 		return null;
 	}
 
 	public static boolean addBuilding(Building building) throws InvalidEntryException
 	{
+		Statement statement = connect();
 		if (checkConnection()) {
 			if (!building.isTypeValid()) {
 				throw new InvalidEntryException("The building type does not match allowed entries");
@@ -88,17 +96,21 @@ public class DatabaseConnection
 			try {
 				String sql = "INSERT INTO buildings VALUES (" + buildId + ", '" + buildName + "'," + numRooms + ", '" + type + "');";
 				int success = statement.executeUpdate(sql); //returns the number of records changed, 0 is an error
+				closeConnection(statement);
 				return true;
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
+				closeConnection(statement);
 				return false;
 			}
 		}
+		closeConnection(statement);
 		return false;
 	}
 
 	public static boolean addArea(Area area) throws InvalidEntryException
 	{
+		Statement statement = connect();
 		if (checkConnection()) {
 			if (!area.isTypeValid()) {
 				throw new InvalidEntryException("The area type does not match allowed entries");
@@ -112,13 +124,17 @@ public class DatabaseConnection
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
+			closeConnection(statement);
 			return true;
 		}
+		closeConnection(statement);
 		return false;
 	}
-	public void closeConnection(){
-		if(checkConnection()){
-			try{
+
+	private static void closeConnection(Statement statement)
+	{
+		if (checkConnection()) {
+			try {
 				statement.close();
 				myConnection.close();
 			} catch (SQLException e) {

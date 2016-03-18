@@ -1,18 +1,10 @@
 package ie.wit.map.version_1;
 
 import ie.wit.map.version_1.managers.ViewLoader;
-import ie.wit.map.version_1.model.Area;
-import ie.wit.map.version_1.model.Building;
-import ie.wit.map.version_1.model.Place;
 import ie.wit.map.version_1.model.database.DataCollection;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Joe on 11/03/2016.
@@ -20,8 +12,9 @@ import java.util.List;
 public class Main extends Application
 {
 	public static final DataCollection dataCollection = new DataCollection();
-	public static final ViewLoader viewLoader = new ViewLoader();
+	public static ViewLoader viewLoader;
 	private static Scene scene;
+	private static boolean rootInSelection = false;
 
 	public static void main(String[] args)
 	{
@@ -59,20 +52,27 @@ public class Main extends Application
 		list.forEach(place -> dataCollection.addToList(place));
 	}*/
 
-	// TODO: 13/03/2016 finish add building form 
-	// TODO: 16/03/2016 match areas on map to building/area object 
+	public static void setScene(Scene scene1)
+	{
+		scene = scene1;
+	}
+
+	public static boolean isRootInSelection()
+	{
+		return rootInSelection;
+	}
+
+	public static void setRootInSelection(boolean rootInSelection)
+	{
+		Main.rootInSelection = rootInSelection;
+	}
+
+	// TODO: 13/03/2016 finish add building form
+	// TODO: 16/03/2016 match areas on map to building/area object
 	@Override
 	public void start(Stage window) throws Exception
 	{
-		BorderPane root = FXMLLoader.load(getClass().getResource("views/root/Root.fxml"));
-		/*window.setMaximized(true);*/
-		window.setResizable(false);
-		/*window.setX(0);
-		window.setY(0);*/
-		window.setTitle("Towers of Hanoi Version 2");
-		scene = new Scene(root, 1000, 600);
-		window.setScene(scene);
-		window.show();
-
+		this.viewLoader = new ViewLoader(window);
+		viewLoader.displayRoot(false);
 	}
 }

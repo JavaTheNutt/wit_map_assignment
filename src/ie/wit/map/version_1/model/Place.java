@@ -18,18 +18,18 @@ public abstract class Place implements Comparable<Place>
 	protected final IntegerProperty id;
 	protected final StringProperty name;
 	protected final StringProperty type;
-	protected final IntegerProperty guiArea;
+	protected final StringProperty guiArea;
 	/*this will ensure that the Place fits the ENUM constraints of the database. Probably not used
 	* as users will most likely select types from a dropdown menu*/
 	private boolean typeValid;
 	private boolean initialised = false;
 
 
-	public Place(String name, String type, int objectType, int guiArea)
+	public Place(String name, String type, int objectType, String guiArea)
 	{
 		this.name = new SimpleStringProperty(name);
 		this.type = new SimpleStringProperty(type);
-		this.guiArea = new SimpleIntegerProperty(guiArea);
+		this.guiArea = new SimpleStringProperty(guiArea);
 		int tempId;
 		initialised = true;
 		do {
@@ -39,20 +39,30 @@ public abstract class Place implements Comparable<Place>
 		typeValid = checkTypeValidity(type, objectType);
 	}
 
-	public Place(int id, String name, String type, int objectType, int guiArea)
+	public Place(int id, String name, String type, int objectType, String guiArea)
 	{
 		this.id = new SimpleIntegerProperty(id);
 		this.name = new SimpleStringProperty(name);
 		this.type = new SimpleStringProperty(type);
-		this.guiArea = new SimpleIntegerProperty(guiArea);
+		this.guiArea = new SimpleStringProperty(guiArea);
 		typeValid = true; // defaults to true as any object with an id predefined has been read from a database
 		initialised = true;
+	}
+
+	public static String[] getAreaTypes()
+	{
+		return areaTypes;
+	}
+
+	public static String[] getBuildingTypes()
+	{
+		return buildingTypes;
 	}
 
 	@Override
 	public String toString()
 	{
-		if (initialised){
+		if (initialised) {
 			return "ID:\t" + id.get() + "\nName:\t" + name.get() + "\nType:\t" + type.get() + "\nValid:\t" + isTypeValid();
 		}
 		return null;
@@ -60,21 +70,19 @@ public abstract class Place implements Comparable<Place>
 
 	public int getId()
 	{
-		if(initialised) {
+		if (initialised) {
 			return id.get();
 		}
 		return 0;
 	}
 
-
 	public String getName()
 	{
-		if(initialised) {
+		if (initialised) {
 			return name.get();
 		}
 		return null;
 	}
-
 
 	private int generateUniqueId()
 	{
@@ -133,22 +141,12 @@ public abstract class Place implements Comparable<Place>
 
 	}
 
-	public static String[] getAreaTypes()
-	{
-		return areaTypes;
-	}
-
-	public static String[] getBuildingTypes()
-	{
-		return buildingTypes;
-	}
-
-	public int getGuiArea()
+	public String getGuiArea()
 	{
 		return guiArea.get();
 	}
 
-	public IntegerProperty guiAreaProperty()
+	public StringProperty guiAreaProperty()
 	{
 		return guiArea;
 	}

@@ -15,11 +15,25 @@ public class ClickableArea
 {
 	private final String areaId;
 	private final List<Node> squares = new ArrayList<>();
+	private boolean assigned;
+	// TODO: 17/03/2016 track if an area is assigned or not
 
-	public ClickableArea(String id){
+	public ClickableArea(String id, Pane[] group)
+	{
 		this.areaId = id;
+		assigned = false;
+		squares.addAll(new ArrayList<Pane>(Arrays.asList(group)));
 	}
-	public void addSquare(Group square){
+
+	public ClickableArea(String id, Pane square)
+	{
+		this.areaId = id;
+		assigned = false;
+		squares.add(square);
+	}
+
+	public void addSquare(Group square)
+	{
 		squares.addAll(square.getChildren());
 	}
 
@@ -31,5 +45,20 @@ public class ClickableArea
 	public String getAreaId()
 	{
 		return areaId;
+	}
+
+	public boolean isAssigned()
+	{
+		return assigned;
+	}
+
+	public void setAssigned(boolean assigned)
+	{
+		this.assigned = assigned;
+	}
+
+	public boolean containsElement(Node element)
+	{
+		return squares.contains(element);
 	}
 }

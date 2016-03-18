@@ -1,65 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.canvas.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/Application_Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ie.wit.map.version_1.views.root.RootCtrl">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../styles/Application_Style.css"
+            xmlns="http://javafx.com/javafx/8" fx:controller="ie.wit.map.version_1.views.root.RootCtrl">
     <top>
-        <MenuBar BorderPane.alignment="CENTER">
-            <menus>
-                <Menu mnemonicParsing="false" text="Places">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#addBuildingRequested" text="Place Manager" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
+        <VBox>
+            <children>
+                <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Places">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#addBuildingRequested"
+                                          text="Place Manager"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Delete"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <StackPane fx:id="returnBox" alignment="CENTER_LEFT" prefWidth="200.0" visible="false"
+                           VBox.vgrow="NEVER">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#addBuildingRequested" text="Return"/>
+                    </children>
+                </StackPane>
+            </children>
+        </VBox>
     </top>
-   <center>
-      <AnchorPane id="mainMap" onMouseClicked="#mapClicked" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane layoutX="67.0" layoutY="387.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="42.0" prefWidth="87.0" rotate="-54.5" style="-fx-background-color: black;" />
-            <Pane fx:id="building0201" layoutX="134.0" layoutY="301.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="49.0" prefWidth="87.0" rotate="-48.8" style="-fx-background-color: black;" />
-            <Pane fx:id="building0301" layoutX="198.0" layoutY="399.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="40.0" prefWidth="144.0" style="-fx-background-color: black;" />
-            <Pane layoutX="275.0" layoutY="248.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="40.0" prefWidth="47.0" style="-fx-background-color: black;" />
-            <Pane layoutX="203.0" layoutY="214.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="54.0" prefWidth="72.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building0601" layoutX="386.0" layoutY="261.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="102.0" prefWidth="114.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building0701" layoutX="342.0" layoutY="242.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="13.0" prefWidth="194.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building0901" layoutX="547.0" layoutY="248.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="40.0" prefWidth="91.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building0801" layoutX="515.0" layoutY="268.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="18.0" prefWidth="21.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building0401" layoutX="342.0" layoutY="368.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="53.0" prefWidth="40.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building0501" layoutX="359.0" layoutY="419.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="23.0" prefWidth="28.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building1001" layoutX="644.0" layoutY="257.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="33.0" prefWidth="14.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building1101" layoutX="519.0" layoutY="288.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="33.0" prefWidth="14.0" rotate="-90.0" style="-fx-background-color: black;" />
-            <Pane layoutX="399.0" layoutY="382.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="53.0" prefWidth="108.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building1201" layoutX="507.0" layoutY="312.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="40.0" prefWidth="68.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building1602" layoutX="536.0" layoutY="340.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building1601" layoutX="573.0" layoutY="304.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="36.0" prefWidth="45.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building1401" layoutX="520.0" layoutY="391.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="36.0" prefWidth="132.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building1301" layoutX="629.0" layoutY="330.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="51.0" prefWidth="30.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building1501" layoutX="719.0" layoutY="356.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="51.0" prefWidth="67.0" style="-fx-background-color: black;" />
-            <Pane fx:id="carPark0107" layoutX="702.0" layoutY="199.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="68.0" prefWidth="78.0" style="-fx-background-color: black;" />
-            <Pane fx:id="carPark0106" layoutX="638.0" layoutY="173.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="68.0" prefWidth="78.0" style="-fx-background-color: black;" />
-            <Pane fx:id="carPark0105" layoutX="569.0" layoutY="165.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="68.0" prefWidth="78.0" style="-fx-background-color: black;" />
-            <Pane fx:id="carPark0104" layoutX="502.0" layoutY="152.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="68.0" prefWidth="78.0" style="-fx-background-color: black;" />
-            <Pane fx:id="carPark0103" layoutX="424.0" layoutY="131.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="68.0" prefWidth="78.0" style="-fx-background-color: black;" />
-            <Pane fx:id="carPark0101" layoutX="348.0" layoutY="97.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="68.0" prefWidth="78.0" style="-fx-background-color: black;" />
-            <Pane fx:id="carPark0102" layoutX="414.0" layoutY="97.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="35.0" prefWidth="69.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building0102" layoutX="247.0" layoutY="153.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="40.0" prefWidth="47.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building0101" layoutX="257.0" layoutY="123.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="36.0" prefWidth="41.0" style="-fx-background-color: black;" />
-            <Pane fx:id="building08011" layoutX="338.0" layoutY="281.0" onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="18.0" prefWidth="21.0" style="-fx-background-color: black;" />
-         </children></AnchorPane>
-   </center>
+    <center>
+        <AnchorPane id="mainMap" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Pane fx:id="pitch01" layoutX="67.0" layoutY="387.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="42.0"
+                      prefWidth="87.0" rotate="-54.5"/>
+                <Pane fx:id="building0201" layoutX="134.0" layoutY="301.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="49.0"
+                      prefWidth="87.0" rotate="-48.8"/>
+                <Pane fx:id="building0301" layoutX="198.0" layoutY="399.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="40.0"
+                      prefWidth="144.0"/>
+                <Pane fx:id="carPark0202" layoutX="275.0" layoutY="248.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="40.0"
+                      prefWidth="47.0"/>
+                <Pane fx:id="carPark0201" layoutX="203.0" layoutY="214.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="54.0"
+                      prefWidth="72.0"/>
+                <Pane fx:id="building0601" layoutX="386.0" layoutY="261.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="102.0"
+                      prefWidth="114.0"/>
+                <Pane fx:id="building0701" layoutX="342.0" layoutY="242.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="13.0"
+                      prefWidth="194.0"/>
+                <Pane fx:id="building0901" layoutX="547.0" layoutY="248.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="40.0"
+                      prefWidth="91.0"/>
+                <Pane fx:id="building0801" layoutX="515.0" layoutY="268.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="18.0"
+                      prefWidth="21.0"/>
+                <Pane fx:id="building0401" layoutX="342.0" layoutY="368.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="53.0"
+                      prefWidth="40.0"/>
+                <Pane fx:id="building0501" layoutX="359.0" layoutY="419.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="23.0"
+                      prefWidth="28.0"/>
+                <Pane fx:id="building1001" layoutX="644.0" layoutY="257.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="33.0"
+                      prefWidth="14.0"/>
+                <Pane fx:id="building1101" layoutX="519.0" layoutY="288.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="33.0"
+                      prefWidth="14.0" rotate="-90.0"/>
+                <Pane fx:id="carPark0301" layoutX="399.0" layoutY="382.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="53.0"
+                      prefWidth="108.0"/>
+                <Pane fx:id="building1201" layoutX="507.0" layoutY="312.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="40.0"
+                      prefWidth="68.0"/>
+                <Pane fx:id="building1602" layoutX="536.0" layoutY="340.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="30.0"
+                      prefWidth="65.0"/>
+                <Pane fx:id="building1601" layoutX="573.0" layoutY="304.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="36.0"
+                      prefWidth="45.0"/>
+                <Pane fx:id="building1401" layoutX="520.0" layoutY="391.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="36.0"
+                      prefWidth="132.0"/>
+                <Pane fx:id="building1301" layoutX="629.0" layoutY="330.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="51.0"
+                      prefWidth="30.0"/>
+                <Pane fx:id="building1501" layoutX="719.0" layoutY="356.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="51.0"
+                      prefWidth="67.0"/>
+                <Pane fx:id="carPark0107" layoutX="702.0" layoutY="199.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="68.0"
+                      prefWidth="78.0"/>
+                <Pane fx:id="carPark0106" layoutX="638.0" layoutY="173.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="68.0"
+                      prefWidth="78.0"/>
+                <Pane fx:id="carPark0105" layoutX="569.0" layoutY="165.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="68.0"
+                      prefWidth="78.0"/>
+                <Pane fx:id="carPark0104" layoutX="502.0" layoutY="152.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="68.0"
+                      prefWidth="78.0"/>
+                <Pane fx:id="carPark0103" layoutX="424.0" layoutY="131.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="68.0"
+                      prefWidth="78.0"/>
+                <Pane fx:id="carPark0101" layoutX="347.0" layoutY="97.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="68.0"
+                      prefWidth="78.0"/>
+                <Pane fx:id="building0102" layoutX="247.0" layoutY="153.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="40.0"
+                      prefWidth="47.0"/>
+                <Pane fx:id="building0101" layoutX="257.0" layoutY="123.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="36.0"
+                      prefWidth="41.0"/>
+                <Pane fx:id="building08011" layoutX="338.0" layoutY="281.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="18.0"
+                      prefWidth="21.0"/>
+                <Pane fx:id="carPark0102" layoutX="409.0" layoutY="106.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="35.0"
+                      prefWidth="69.0"/>
+                <Pane fx:id="carPark0108" layoutX="739.0" layoutY="315.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="21.0"
+                      prefWidth="161.0" rotate="41.6"/>
+                <Pane fx:id="carPark0109" layoutX="811.0" layoutY="338.0" onMouseClicked="#panelClicked"
+                      onMouseEntered="#panelEntered" onMouseExited="#panelExited" opacity="0.7" prefHeight="51.0"
+                      prefWidth="30.0" rotate="-45.0"/>
+            </children>
+        </AnchorPane>
+    </center>
 </BorderPane>
