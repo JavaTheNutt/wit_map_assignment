@@ -1,4 +1,4 @@
-package ie.wit.map.version_1.model;
+package ie.wit.map.common.model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -40,6 +40,14 @@ public class Building extends Place
 			return numRooms.get();
 		}
 		return 0;
+	}
+
+	public final IntegerProperty numRoomsProperty()
+	{
+		if (initialised) {
+			return numRooms;
+		}
+		return null;
 	}
 
 

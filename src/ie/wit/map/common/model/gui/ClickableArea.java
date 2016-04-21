@@ -1,4 +1,4 @@
-package ie.wit.map.version_1.model.gui;
+package ie.wit.map.common.model.gui;
 
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Joe on 15/03/2016.
+ * Created by Joe on 19/04/2016.
  */
 public class ClickableArea
 {
@@ -69,5 +69,4 @@ public class ClickableArea
 	{
 		return building;
 	}
-
 }

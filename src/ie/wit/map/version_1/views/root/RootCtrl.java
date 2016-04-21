@@ -92,26 +92,37 @@ public class RootCtrl
 
 	private ClickableArea[] areaList = new ClickableArea[20];
 	private List<Pane> allPanels = new ArrayList<>();
+	private List<ClickableArea> buildingList = new ArrayList<>();
+	private List<ClickableArea> nonBuildingList = new ArrayList<>();
 
 	@FXML
 	private void initialize()
 	{
+		// TODO: 04/04/2016 create a new style class for assigned/unassigned areas 
 		assignGroups();
-		menuBar.managedProperty().bind(menuBar.visibleProperty());
-		returnBox.managedProperty().bind(returnBox.visibleProperty());
-		if (Main.isRootInSelection()) {
-			menuBar.setVisible(false);
-			returnBox.setVisible(true);
-			for (Pane panel : allPanels) {
-				panel.getStyleClass().add("clickablePanelShown");
-				panel.getStyleClass().remove("clickablePanelHidden");
+		System.out.println(buildingList.size());
+		menuBar.managedProperty().bind(menuBar.visibleProperty()); //remove space when hidden
+		returnBox.managedProperty().bind(returnBox.visibleProperty());//remove space when hidden
+		initScene();
+
+	}
+
+	private void initScene()
+	{
+		menuBar.setVisible(!Main.isRootInSelection());
+		returnBox.setVisible(Main.isRootInSelection());
+		if (Main.isBuildingSelection()) {
+			for (ClickableArea area : buildingList) {
+				String styleClass = area.isAssigned() ? "nonSelectableAreaShown" : "selectableAreaShown";
+				for (Node pane : area.getSquares()) {
+
+					pane.getStyleClass().add(styleClass);
+				}
 			}
-		} else {
-			menuBar.setVisible(true);
-			returnBox.setVisible(false);
-			for (Pane panel : allPanels) {
-				panel.getStyleClass().remove("clickablePanelShown");
-				panel.getStyleClass().add("clickablePanelHidden");
+			for (ClickableArea area : nonBuildingList) {
+				for (Node pane : area.getSquares()) {
+					pane.getStyleClass().add("nonSelectableAreaShown");
+				}
 			}
 		}
 	}
@@ -129,28 +140,51 @@ public class RootCtrl
 		Pane[] buildingList01 = {building0101, building0102};
 		Pane[] buildingList16 = {building1601, building1602};
 		Pane[] carPark02 = {carPark0201, carPark0202};
-		areaList[0] = new ClickableArea("carpark01", carparkList01);
-		areaList[1] = new ClickableArea("building01", buildingList01);
-		areaList[2] = new ClickableArea("building02", building0201);
-		areaList[3] = new ClickableArea("building03", building0301);
-		areaList[4] = new ClickableArea("building04", building0401);
-		areaList[5] = new ClickableArea("building05", building0501);
-		areaList[6] = new ClickableArea("building06", building0601);
-		areaList[7] = new ClickableArea("building07", building0701);
-		areaList[8] = new ClickableArea("building08", building0801);
-		areaList[9] = new ClickableArea("building09", building0901);
-		areaList[10] = new ClickableArea("building10", building1001);
-		areaList[11] = new ClickableArea("building11", building1101);
-		areaList[12] = new ClickableArea("building12", building1201);
-		areaList[13] = new ClickableArea("building13", building1301);
-		areaList[14] = new ClickableArea("building14", building1401);
-		areaList[15] = new ClickableArea("building15", building1501);
-		areaList[16] = new ClickableArea("building16", buildingList16);
-		areaList[17] = new ClickableArea("pitch01", pitch01);
-		areaList[18] = new ClickableArea("carPark02", carPark02);
-		areaList[19] = new ClickableArea("carPark03", carPark0301);
+		areaList[0] = new ClickableArea("carpark01", carparkList01, false);
+		nonBuildingList.add(areaList[0]);
+		areaList[1] = new ClickableArea("building01", buildingList01, true);
+		buildingList.add(areaList[1]);
+		areaList[2] = new ClickableArea("building02", building0201, true);
+		buildingList.add(areaList[2]);
+		areaList[3] = new ClickableArea("building03", building0301, true);
+		buildingList.add(areaList[3]);
+		areaList[4] = new ClickableArea("building04", building0401, true);
+		buildingList.add(areaList[4]);
+		areaList[5] = new ClickableArea("building05", building0501, true);
+		buildingList.add(areaList[5]);
+		areaList[6] = new ClickableArea("building06", building0601, true);
+		buildingList.add(areaList[6]);
+		areaList[7] = new ClickableArea("building07", building0701, true);
+		buildingList.add(areaList[7]);
+		areaList[8] = new ClickableArea("building08", building0801, true);
+		buildingList.add(areaList[8]);
+		areaList[9] = new ClickableArea("building09", building0901, true);
+		buildingList.add(areaList[9]);
+		areaList[10] = new ClickableArea("building10", building1001, true);
+		buildingList.add(areaList[10]);
+		areaList[11] = new ClickableArea("building11", building1101, true);
+		buildingList.add(areaList[11]);
+		areaList[12] = new ClickableArea("building12", building1201, true);
+		buildingList.add(areaList[12]);
+		areaList[13] = new ClickableArea("building13", building1301, true);
+		buildingList.add(areaList[13]);
+		areaList[14] = new ClickableArea("building14", building1401, true);
+		buildingList.add(areaList[14]);
+		areaList[15] = new ClickableArea("building15", building1501, true);
+		buildingList.add(areaList[15]);
+		areaList[16] = new ClickableArea("building16", buildingList16, true);
+		buildingList.add(areaList[16]);
+		areaList[17] = new ClickableArea("pitch01", pitch01, false);
+		nonBuildingList.add(areaList[17]);
+		areaList[18] = new ClickableArea("carPark02", carPark02, false);
+		nonBuildingList.add(areaList[18]);
+		areaList[19] = new ClickableArea("carPark03", carPark0301, false);
+		nonBuildingList.add(areaList[19]);
 		AreaManagement.addToList(new ArrayList<ClickableArea>(Arrays.asList(areaList)));
 		for (ClickableArea clickableArea : areaList) {
+			if (Main.dataCollection.guiIdExists(clickableArea.getAreaId())) {
+				clickableArea.setAssigned(true);
+			}
 			for (Node node : clickableArea.getSquares()) {
 				allPanels.add((Pane) node);
 			}
@@ -169,9 +203,32 @@ public class RootCtrl
 		viewLoader.displayPlaceManager();
 	}
 
+	// TODO: 19/03/2016 validate the choice and close the window
 	@FXML
 	private void panelClicked(Event e)
 	{
+		if (Main.isRootInSelection()) {
+			inSelectionClick(e);
+		} else {
+			inDisplayClick(e);
+		}
 		System.out.println(AreaManagement.findArea((Node) e.getSource()));
+	}
+
+	private void inSelectionClick(Event e)
+	{
+		System.out.println("selection mode click");
+		String tempId = AreaManagement.findArea((Node) e.getSource());
+		ClickableArea areaClicked = AreaManagement.getArea((Node) e.getSource());
+		if (areaClicked.isBuilding()) {
+			AreaManagement.setTempAreaId(tempId);
+			viewLoader.getCurrentWindow().close();
+		}
+
+	}
+
+	private void inDisplayClick(Event e)
+	{
+		System.out.println("display mode click");
 	}
 }

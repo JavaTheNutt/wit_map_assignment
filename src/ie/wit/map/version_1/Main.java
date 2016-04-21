@@ -1,7 +1,7 @@
 package ie.wit.map.version_1;
 
+import ie.wit.map.common.model.database.DataCollection;
 import ie.wit.map.version_1.managers.ViewLoader;
-import ie.wit.map.version_1.model.database.DataCollection;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,6 +15,7 @@ public class Main extends Application
 	public static ViewLoader viewLoader;
 	private static Scene scene;
 	private static boolean rootInSelection = false;
+	private static boolean buildingSelection = false;
 
 	public static void main(String[] args)
 	{
@@ -67,12 +68,22 @@ public class Main extends Application
 		Main.rootInSelection = rootInSelection;
 	}
 
+	public static boolean isBuildingSelection()
+	{
+		return buildingSelection;
+	}
+
+	public static void setBuildingSelection(boolean buildingSelection)
+	{
+		Main.buildingSelection = buildingSelection;
+	}
+
 	// TODO: 13/03/2016 finish add building form
 	// TODO: 16/03/2016 match areas on map to building/area object
 	@Override
 	public void start(Stage window) throws Exception
 	{
 		this.viewLoader = new ViewLoader(window);
-		viewLoader.displayRoot(false);
+		viewLoader.displayRoot();
 	}
 }

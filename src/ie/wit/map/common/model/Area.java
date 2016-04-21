@@ -1,4 +1,4 @@
-package ie.wit.map.version_1.model;
+package ie.wit.map.common.model;
 
 /**
  * Created by Joe on 11/03/2016.

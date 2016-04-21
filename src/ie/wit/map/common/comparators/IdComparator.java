@@ -1,6 +1,6 @@
-package ie.wit.map.version_1.comparators;
+package ie.wit.map.common.comparators;
 
-import ie.wit.map.version_1.model.Place;
+import ie.wit.map.common.model.Place;
 
 import java.util.Comparator;
 

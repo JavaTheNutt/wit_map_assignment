@@ -1,4 +1,4 @@
-package ie.wit.map.version_1.model;
+package ie.wit.map.common.model;
 
 import ie.wit.map.version_1.Main;
 import javafx.beans.property.IntegerProperty;
@@ -63,7 +63,7 @@ public abstract class Place implements Comparable<Place>
 	public String toString()
 	{
 		if (initialised) {
-			return "ID:\t" + id.get() + "\nName:\t" + name.get() + "\nType:\t" + type.get() + "\nValid:\t" + isTypeValid();
+			return "ID:\t" + id.get() + "\nName:\t" + name.get() + "\nType:\t" + type.get() + "\nValid:\t" + isTypeValid() + "\nGui Id:\t" + guiArea;
 		}
 		return null;
 	}
@@ -135,6 +135,7 @@ public abstract class Place implements Comparable<Place>
 		return null;
 	}
 
+
 	public final boolean isTypeValid()
 	{
 		return initialised && typeValid;
@@ -149,5 +150,15 @@ public abstract class Place implements Comparable<Place>
 	public StringProperty guiAreaProperty()
 	{
 		return guiArea;
+	}
+
+	public StringProperty getNameProperty()
+	{
+		return name;
+	}
+
+	public StringProperty getTypeProperty()
+	{
+		return type;
 	}
 }

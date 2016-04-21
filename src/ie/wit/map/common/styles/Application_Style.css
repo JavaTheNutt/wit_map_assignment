@@ -1,5 +1,5 @@
 #mainMap {
-    -fx-background-image: url("../img/witmap2.jpeg");
+    -fx-background-image: url("../../common/img/witmap2.jpeg");
     -fx-background-size: 100%;
     -fx-background-repeat: no-repeat;
 }
@@ -23,9 +23,25 @@
     -fx-font-style: italic;
 }
 
+.areaSelectedLabel {
+    -fx-text-fill: lawngreen;
+    -fx-font-style: italic;
+}
+
 .clickablePanelShown {
-    -fx-background-color: #4467ff;
+    -fx-background-color: #1cff49;
     -fx-opacity: 0.7;
+    -fx-effect: dropshadow( three-pass-box , #72abff, 10, 0.5 , 1 , 0.5 );
+}
+
+.selectableAreaShown {
+    -fx-opacity: 0.7;
+    -fx-background-color: #7cff47;
+}
+
+.nonSelectableAreaShown {
+    -fx-opacity: 0.7;
+    -fx-background-color: #ff2918;
 }
 
 .clickablePanelHidden {

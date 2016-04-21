@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="mainMap" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../common/styles/Application_Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ie.wit.map.version_2.views.map.Map">
+    <children>
+        <Pane fx:id="area01Pane01" layoutX="68.0" layoutY="343.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="43.0" prefWidth="69.0" rotate="-59.7" />
+        <Pane fx:id="area04Pane01" layoutX="328.0" layoutY="115.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="57.0" prefWidth="195.0" rotate="26.6" />
+        <Pane fx:id="area04Pane02" layoutX="509.0" layoutY="166.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="57.0" prefWidth="195.0" rotate="14.0" />
+        <Pane fx:id="area04Pane03" layoutX="655.0" layoutY="277.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="27.0" prefWidth="151.0" rotate="43.5" />
+        <Pane fx:id="building01Pane01" layoutX="345.0" layoutY="234.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="92.0" prefWidth="105.0" />
+        <Pane fx:id="area02Pane01" layoutX="355.0" layoutY="344.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="51.0" prefWidth="105.0" />
+        <Pane fx:id="building15Pane01" layoutX="176.0" layoutY="365.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="30.0" prefWidth="128.0" />
+        <Pane fx:id="building06Pane01" layoutX="306.0" layoutY="337.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="39.0" prefWidth="39.0" />
+        <Pane fx:id="building07Pane01" layoutX="316.0" layoutY="376.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="22.0" prefWidth="33.0" />
+        <Pane fx:id="building08Pane01" layoutX="308.0" layoutY="222.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="13.0" prefWidth="180.0" />
+        <Pane fx:id="building09Pane01" layoutX="488.0" layoutY="222.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="39.0" prefWidth="86.0" />
+        <Pane fx:id="building03Pane01" layoutX="460.0" layoutY="235.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="22.0" prefWidth="24.0" />
+        <Pane fx:id="building02Pane01" layoutX="460.0" layoutY="280.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="22.0" prefWidth="56.0" />
+        <Pane fx:id="building02Pane02" layoutX="477.0" layoutY="305.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="30.0" prefWidth="56.0" />
+        <Pane fx:id="building13Pane01" layoutX="516.0" layoutY="276.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="30.0" prefWidth="33.0" />
+        <Pane fx:id="building11Pane01" layoutX="472.0" layoutY="355.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="30.0" prefWidth="112.0" />
+        <Pane fx:id="building14Pane01" layoutX="639.0" layoutY="319.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="51.0" prefWidth="80.0" />
+        <Pane fx:id="building12Pane01" layoutX="567.0" layoutY="301.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="51.0" prefWidth="33.0" />
+        <Pane fx:id="building10Pane01" layoutX="584.0" layoutY="232.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="30.0" prefWidth="11.0" />
+        <Pane fx:id="building05Pane01" layoutX="467.0" layoutY="261.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="30.0" prefWidth="11.0" rotate="87.3" />
+        <Pane fx:id="building04Pane01" layoutX="122.0" layoutY="251.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="81.0" prefWidth="56.0" rotate="41.2" />
+        <Pane fx:id="area03Pane01" layoutX="200.0" layoutY="176.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="92.0" prefWidth="56.0" rotate="108.4" />
+        <Pane fx:id="area03Pane02" layoutX="264.0" layoutY="222.0" onMouseClicked="#panelClicked" onMouseEntered="#panelEntered" onMouseExited="#panelExited" prefHeight="51.0" prefWidth="33.0" rotate="121.0" />
+    </children>
+</AnchorPane>

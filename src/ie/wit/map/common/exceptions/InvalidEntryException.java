@@ -1,4 +1,4 @@
-package ie.wit.map.version_1.exceptions;
+package ie.wit.map.common.exceptions;
 
 /**
  * Created by Joe on 12/03/2016.

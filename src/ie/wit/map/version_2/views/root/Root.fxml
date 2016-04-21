@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ie.wit.map.version_2.views.root.RootCtrl">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="View">
+                    <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showPhotos" text="Show Photos" />
+                        <MenuItem mnemonicParsing="false" onAction="#showItems" text="Show Details" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem fx:id="addItemButton" mnemonicParsing="false" onAction="#showAddItem" text="Add Item" />
+                  <MenuItem mnemonicParsing="false" onAction="#showAddPhoto" text="Add Photo" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <bottom>
+        <StackPane fx:id="returnPane" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" onAction="#returnToMap" text="Return To Map" />
+            </children>
+        </StackPane>
+    </bottom>
+</BorderPane>

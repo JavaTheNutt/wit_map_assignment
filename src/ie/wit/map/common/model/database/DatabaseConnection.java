@@ -1,9 +1,10 @@
-package ie.wit.map.version_1.model.database;
+package ie.wit.map.common.model.database;
 
-import ie.wit.map.version_1.exceptions.InvalidEntryException;
-import ie.wit.map.version_1.model.Area;
-import ie.wit.map.version_1.model.Building;
-import ie.wit.map.version_1.model.Place;
+import ie.wit.map.common.exceptions.InvalidEntryException;
+import ie.wit.map.common.model.Area;
+import ie.wit.map.common.model.Building;
+import ie.wit.map.common.model.Photo;
+import ie.wit.map.common.model.Place;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -40,6 +41,31 @@ public class DatabaseConnection
 	public static boolean checkConnection()
 	{
 		return connect() != null;
+	}
+	public static List<Photo> getAllPhotos(){
+		Statement statement = connect();
+		List<Photo> list = new ArrayList<>();
+		ResultSet res = null;
+		if (checkConnection()){
+			try{
+				res = statement.executeQuery("SELECT * FROM photos");
+				while(res.next()){
+					String path = res.getString("photo_path");
+					int building = res.getInt("building");
+					Photo photo = new Photo(path, building);
+					list.add(photo);
+				}
+				closeConnection(statement);
+				System.out.println(list.size());
+				return list;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				closeConnection(statement);
+				return null;
+			}
+		}
+		closeConnection(statement);
+		return null;
 	}
 
 	public static List<Place> getAllFromRecords()
@@ -81,6 +107,22 @@ public class DatabaseConnection
 		closeConnection(statement);
 		return null;
 	}
+	public static boolean addPhoto(Photo photo){
+		Statement statement = connect();
+		if(checkConnection()){
+			String path  = photo.getPath();
+			int building = photo.getBuilding();
+			try {
+				statement.executeUpdate("INSERT INTO photos VALUES ('" + path + "', " + building + ");");
+				closeConnection(statement);
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		closeConnection(statement);
+		return false;
+	}
 
 	public static boolean addBuilding(Building building) throws InvalidEntryException
 	{
@@ -93,8 +135,9 @@ public class DatabaseConnection
 			String buildName = building.getName();
 			int numRooms = building.getNumRooms();
 			String type = building.getType();
+			String gui = building.getGuiArea();
 			try {
-				String sql = "INSERT INTO buildings VALUES (" + buildId + ", '" + buildName + "'," + numRooms + ", '" + type + "');";
+				String sql = "INSERT INTO buildings VALUES (" + buildId + ", '" + buildName + "'," + numRooms + ", '" + type + "', '" + gui + "' );";
 				int success = statement.executeUpdate(sql); //returns the number of records changed, 0 is an error
 				closeConnection(statement);
 				return true;
@@ -118,8 +161,9 @@ public class DatabaseConnection
 			int areaId = area.getId();
 			String areaName = area.getName();
 			String areaType = area.getType();
+			String guilId = area.getGuiArea();
 			try {
-				String sql = "INSERT INTO areas VALUES (" + areaId + ", '" + areaName + "', '" + areaType + "' );";
+				String sql = "INSERT INTO areas VALUES (" + areaId + ", '" + areaName + "', '" + areaType + "', '" + areaId + "' );";
 				statement.executeUpdate(sql);
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
@@ -130,6 +174,67 @@ public class DatabaseConnection
 		closeConnection(statement);
 		return false;
 	}
+
+	public static void removeFromDatabase(int id, boolean isBuilding)
+	{
+		Statement statement = connect();
+		String sql;
+		if (isBuilding) {
+			sql = "DELETE FROM buildings WHERE buildingId = " + id + ";";
+		} else {
+			sql = "DELETE FROM areas WHERE areaId = " + id + ";";
+		}
+		try {
+			statement.executeUpdate(sql);
+			closeConnection(statement);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			closeConnection(statement);
+		}
+	}
+
+	public static boolean updateBuilding(Building building)
+	{
+		Statement statement = connect();
+		try {
+			String name = building.getName();
+			String type = building.getType();
+			String gui = building.getGuiArea();
+			int numRooms = building.getNumRooms();
+			int id = building.getId();
+			statement.executeUpdate("UPDATE buildings SET buildingName = '" + name +
+					"', numberOfRooms = " + numRooms + ", guiArea = '" + gui + "', buildingType = '" +
+					type + "' WHERE buildingId = " + id);
+			closeConnection(statement);
+			System.out.println("update successful");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			closeConnection(statement);
+			return false;
+		}
+	}
+
+	public static boolean updateArea(Area area)
+	{
+		Statement statement = connect();
+		try {
+			String name = area.getName();
+			String type = area.getType();
+			String gui = area.getGuiArea();
+			int id = area.getId();
+			statement.executeUpdate("UPDATE areas SET areaName ='" + name + "', areaType = '" +
+					type + "', guiArea ='" + gui + "' WHERE areaId = " + id);
+			closeConnection(statement);
+			System.out.println("update successful");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			closeConnection(statement);
+			return false;
+		}
+	}
+
 
 	private static void closeConnection(Statement statement)
 	{
